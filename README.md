@@ -104,9 +104,9 @@ The code for Part 1 is provided in the file cart.py. You can run the code by cal
 
     > python3 cart.py --train
 
-The model file is also provided in the project and saved as cart.npy. You can use it to test the code by calling:
+The model file is also provided in the project and saved as cartpole.npy. You can use it to test the code by calling:
 
-    > python3 cart.py --test --model cart.npy
+    > python3 cart.py --test --model cartpole.npy
 
 ### Part 2
 
