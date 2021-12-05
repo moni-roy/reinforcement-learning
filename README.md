@@ -34,7 +34,7 @@ In the Canvas,
 > Files->Projects->Project 2->cart.py
 
 > For training, call: python3 cart.py --train
-
+>
 > For testing, call: python3 cart.py --test --model \<model file>
 
 ### OpenAI Gym
@@ -47,9 +47,9 @@ After running the provided command, you may also be asked to install some additi
 
 ### State Discretization
 
-We will discretize the space in order to simplify the reinforcement learning algorithm. For each state we determine the realistic minimum and maximum values and store it in arrays MIN_VALS and MAX_VALS respectively (line 14 and 15). These arrays are then used to discretize each element of the state into respective NUM_BINS (line 16). For example, state(0) i.e., position (x) with minimum and maximum value of $-2.5$ and $+2.5$, respectively, is discretized into 9 bins in the example code (cart.py) which implies that for x<-2.5 will be one bucket, $-2.5<x<-1.875$ will be another and so on.
+We will discretize the space in order to simplify the reinforcement learning algorithm. For each state we determine the realistic minimum and maximum values and store it in arrays MIN_VALS and MAX_VALS respectively (line 14 and 15). These arrays are then used to discretize each element of the state into respective NUM_BINS (line 16). For example, state(0) i.e., position (x) with minimum and maximum value of -2.5 and +2.5, respectively, is discretized into 9 bins in the example code (cart.py) which implies that for x<-2.5 will be one bucket, -2.5<x<-1.875 will be another and so on.
 
-These state components are encoded into a single integer state $(0 ... 9999)$. This is done for you in the function discretize_state in the provided code.
+These state components are encoded into a single integer state (0 ... 9999). This is done for you in the function discretize_state in the provided code.
 
 ## Task (part 1)
 
@@ -57,9 +57,9 @@ You need to implement the q-learning part of this task (right now the example co
 
 > Q-values can be learned directly from reward feedback
 >
-> $$Q(a,s) <- Q(a,s) + \alpha(R(s) + \gamma * max_{a'}(Q(a',s') - Q(a,s)))$$
+> Q(a,s) ← Q(a,s) + α(R(s) + 𝛾 * max a' Q(a',s’) - Q(a,s))
 
-Here, $s$ is the current state, $s'$ (sprime) is the next state, and a is the current action. The above equation needs to be implemented on line 142. Reward is stored in the variable reward, and the learning rate $(\alpha)$ is in the variable alpha, which is set on line 101. The predicted value of the next state, $max_{a'}Q(a',s')$, is already computed and stored in the variable predicted_value.
+Here, s is the current state, s' (sprime) is the next state, and a is the current action. The above equation needs to be implemented on line 142. Reward is stored in the variable reward, and the learning rate (α) is in the variable alpha, which is set on line 101. The predicted value of the next state, max_a'Q(a',s'), is already computed and stored in the variable predicted_value.
 
 You'll need to implement the equation on line 142 and tune the values of the parameters alpha and gamma (lines 101 and 101, respectively). You should only have to write one line of code and adjust some values for this part. It is suggested that you step the alpha (learning rate) values up and down by factors of .1 in both directions and the gamma values by .1 in both directions to see the effect it has on the learning. Usually learning
 rate is kept low such that the policy does not take huge step toward convergence and miss the local minima, eventually diverging from it. Gamma, on the other hand, represents the discount factor which essentially means how much the policy prefers current reward over future rewards.
@@ -76,8 +76,8 @@ This is easy on the code side and will allow you to experiment with the various 
 
 Now that you've implemented q-learning for one task, you will move to the mountain car task. Instead of 2 actions (left, right), this task has three (left, null, right). The task also has different state variables (only 2 for mountain car)
 
-- x: the location of the robot ($-1.2$ is the left, $-.45$ is approximately the valley, $0.6$ is the rightmost part of the board, $0.5$ is the location of the flag)
-- xdot: the velocity of the robot (this can go from $-0.07$ to $0.07$)
+- x: the location of the robot (-1.2 is the left, -.45 is approximately the valley, 0.6 is the rightmost part of the board, 0.5 is the location of the flag)
+- xdot: the velocity of the robot (this can go from -0.07 to 0.07)
 
 This will require you to change the following:
 
@@ -89,7 +89,7 @@ This will require you to change the following:
   - NUM_BINS = [ ]
 - Total number of possible states:
 
-  Depending on the NUM_BINS, you need to set the number of possible states. For example, in the cartpole problem in Part I, there was $10$ bins for each variable, leading to $10 * 10 * 10 * 10 - 1 = 9999$ states. Now you have $2$ variables. Assuming that you have Y bins for each variable, you will end up with $Y*Y-1$ states. Replace $9999$ in line 87 with the appropriate number whenever you change the values in NUM_BINS.
+  Depending on the NUM_BINS, you need to set the number of possible states. For example, in the cartpole problem in Part I, there was 10 bins for each variable, leading to 10 * 10 * 10 * 10 - 1 = 9999 states. Now you have 2 variables. Assuming that you have Y bins for each variable, you will end up with Y*Y-1 states. Replace 9999 in line 87 with the appropriate number whenever you change the values in NUM_BINS.
 
 ## Implementation
 
